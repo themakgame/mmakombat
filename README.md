@@ -1,2 +1,5 @@
 # mmakombat
-ufc mma fighter stats
+React Web App
+
+MMA/UFC Fighter Stats for comparison
+
