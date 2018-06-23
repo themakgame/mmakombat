@@ -1,0 +1,773 @@
+@font-face {
+  font-family: tDays;
+  src: url('./CAPUT_TRIAL.ttf') format("truetype");
+}
+
+body {
+  -webkit-overflow-scrolling: touch;
+  margin: 0;
+  text-align: center;
+  color: black;
+  height: 100%;
+  background: black;
+}
+
+html {
+  margin: 0;
+  text-align: center;
+  color: black;
+  height: 100%;
+  background: black;
+}
+
+
+button:focus {
+  outline: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+@media (max-width: 568px) {
+  .cage, .ring {
+    background-attachment: scroll;
+  }
+}
+
+.test {
+  z-index: 5000;
+}
+
+.wrapper {
+  text-align: center;
+  z-index: 1;
+  perspective: 1px;
+  transform-style: preserve-3d;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.ring {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: url("../images/bg_ring_blur.jpg") no-repeat;
+  background-position: center top;
+  background-size: cover;
+  transform: translateZ(-1px) scale(2.5);
+  z-index: -1;
+}
+
+.cage {
+  position: absolute;
+  width: 100%;
+  height: 656px;
+  background: url("../images/bg_cage.png") no-repeat;
+  background-position: center top;
+  z-index: 0;
+  background-attachment: scroll;
+}
+
+#container {
+  margin: auto;
+  display: grid;
+  grid-template-areas: 'header header' 'body body';
+  grid-gap: 1px;
+  padding: 1px;
+  max-width: 960px;
+}
+
+header {
+  grid-area: header;
+  z-index: 100;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  border-bottom: 2px solid rgba(127, 126, 120, 0.607);
+  padding-bottom: 5px;
+  > div {
+    flex-shrink: 1fr;
+    width: 1fr;
+    padding: 0 0;
+  }
+}
+
+.profTop {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-flow: row wrap;
+  position: absolute;
+}
+
+.profStat {
+  width: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  position: absolute;
+  justify-content: center;
+}
+
+.body {
+  margin-top: 15px;
+  z-index: 50;
+  grid-area: body;
+  justify-content: center;
+  display: flex;
+  flex-flow: row wrap;
+  position: relative;
+}
+
+.profile {
+  box-sizing: border-box;
+  text-align: center;
+  width: 48%;
+  color: white;
+}
+
+#profileImgleft, #profileImgright {
+  height: 630px;
+  opacity: 1;
+}
+
+.profileImg {
+  height: 630px;
+  top: 0;
+  transform: scale(1);
+}
+
+.profileImgSlideInLeft {
+  margin-left: -100px;
+  opacity: 0;
+}
+
+.profileImgSlideInRight {
+  margin-right: -100px;
+  opacity: 0;
+}
+
+.FontSubtle {
+  color: grey;
+  font-size: .9em;
+}
+
+.profileImgTransition {
+  transition: .5s ease all !important;
+}
+
+.BottomProfile {
+  text-align: center;
+  box-sizing: border-box;
+  width: 50%;
+  height: 100%;
+  box-sizing: border-box;
+  text-align: center;
+  width: 50%;
+  height: 100%;
+}
+
+.FaceIcon {
+  color: white;
+}
+
+.StatMiddle {
+  position: relative;
+  background: red;
+  width: 0px;
+  text-align: center;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.StatMiddleContent {
+  padding-top: 120px;
+  display: flex;
+  justify-content: center;
+  flex-flow: row nowrap;
+  text-align: center;
+  align-items: center;
+  color: red;
+  width: 100%;
+  top: 0;
+  > div {
+    color: white;
+  }
+}
+
+.PunchButtonLeft {
+  text-align: left;
+  padding: 5px 2px 0 10px;
+}
+
+.PunchButtonRight {
+  text-align: right;
+  padding: 5px 5px 0 2px;
+}
+
+.FighterNameLeft {
+  right: 10px;
+  text-shadow: 0 0 156px rgb(255, 0, 0), 0 0 16px rgb(0, 0, 255), 0 0 6px rgb(18, 31, 176), 0 0 2px rgb(255, 255, 255);
+}
+
+.FighterNameRight {
+  left: 10px;
+  text-shadow: 0 0 156px rgb(255, 0, 0), 0 0 16px rgb(255, 0, 0), 0 0 6px rgb(176, 39, 18), 0 0 2px rgb(255, 255, 255);
+}
+
+.FighterName {
+  position: absolute;
+  margin-top: -10px;
+  font-family: tDays;
+  font-size: 1.8em;
+  font-weight: 300;
+  color: rgba(255, 255, 255, 1);
+  z-index: -1;
+  text-align: center;
+}
+
+.FighterNames {
+  display: flex;
+  justify-content: center;
+  > div {
+    width: 50%;
+    flex-grow: 1;
+  }
+}
+
+.ImageProfile {
+  position: relative;
+}
+
+.MainBottom:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-size: contain;
+  width: 100%;
+  height: 100%;
+  opacity: .42;
+  z-index: -1;
+}
+
+.leftChart {
+  text-align: right;
+  justify-self: right;
+  transition: 1s ease-out all;
+  opacity: 1;
+  transition: 2s ease all;
+}
+
+.rightChart {
+  text-align: left;
+  justify-self: left;
+  opacity: 01;
+  transition: 2s ease all;
+}
+
+.show {
+  transform: translateX(0px);
+}
+
+.FadeIn {
+  opacity: 1;
+}
+
+.SearchPanel {
+  position: relative;
+  top: 0;
+  left: 0;
+  align-self: center;
+  width: 50vw;
+}
+
+.SearchResultsWrap {
+  position: absolute;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  transform: translateY(10px) translateX(0px);
+  transition: .5s ease all;
+}
+
+.SearchResultsWrapOpen {
+  transform: translateY(10px) translateX(0px);
+  opacity: 1;
+  transition: 0.7s ease all;
+}
+
+.SearchResults {
+  opacity: 0;
+  display: flex;
+  justify-content: space-evenly;
+  flex-flow: row wrap;
+  position: absolute;
+  z-index: 10;
+  width: auto;
+  height: auto;
+  margin: 20px;
+  transition: none;
+}
+
+.showSearchResults {
+  opacity: 1;
+  transition: opacity .6s ease .1s;
+}
+
+.searchItem {
+  margin: 10px;
+  color: rgb(0, 0, 0);
+  -moz-box-shadow: inset 0 0 30px hsl(0, 7%, 52%);
+  -webkit-box-shadow: inset 0 0 30px hsl(0, 7%, 52%);
+  box-shadow: inset 0 0 30px hsl(0, 7%, 52%);
+  &:hover {
+    background: rgb(127, 196, 236);
+    cursor: pointer;
+  }
+}
+
+.searchItemName {
+  position: relative;
+  color: rgb(76, 76, 76);
+  width: 146px;
+}
+
+.drawer {
+  position: absolute;
+  width: 100%;
+  transform: translateY(200px);
+  z-index: 200;
+  color: white !important;
+  text-align: center;
+}
+
+.swipeDrawer {
+  width: 50vw;
+  height: 100%;
+  position: block;
+}
+
+.fighterProfileBottom {
+  display: flex;
+  flex-flow: column wrap;
+  width: 100%;
+}
+
+.TopChart {
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  flex-flow: row;
+}
+
+.StatMiddleBottom {
+  position: relative;
+  background: linear-gradient(rgba(226, 226, 226, 0.7) 0%, rgba(219, 219, 219, 0.8) 50%, rgba(209, 209, 209, 0.7) 51%, rgba(254, 254, 254, 0.9) 100%);
+  margin-top: 20px;
+  right: 5px;
+  left: 5px;
+  display: flex;
+  flex-flow: row wrap;
+  width: 100vw;
+  left: calc(-50vw + 50%);
+  justify-content: space-between;
+  height: 0;
+  > table {
+    &:nth-child(1), &:nth-child(2) {
+      width: 50%;
+    }
+  }
+}
+
+.FontOpponent {
+  width: 150px;
+  font-size: 1.2em;
+  color: #000;
+}
+
+.ProfFightHistory {
+  transition: .5s ease-in all;
+  width: 100%;
+  border: 0px;
+  background-color: #fff;
+  color: #444;
+  opacity: .85;
+}
+
+.LeftSideHidden {
+  margin-left: -1000px;
+}
+
+.RightSideHidden {
+  margin-right: -1000px;
+}
+
+.SlideLeft {
+  margin-right: 0px !important;
+}
+
+.SlideRight {
+  margin-left: 0px !important;
+}
+
+.FlexAlignRight {
+  text-align: right;
+  margin-right: 0;
+}
+
+.fighterProfileTop {
+  padding: 10px;
+  display: flex;
+  flex-flow: column wrap;
+  width: 400px;
+  background: linear-gradient(to right bottom, rgba(3, 70, 157, 1), rgba(236, 5, 5, 0.6));
+  transition: all 1s;
+  opacity: 0;
+}
+
+.StatFighterNameBar {
+  > div {
+    width: 50%;
+    padding: 0px 25px;
+    vertical-align: baseline;
+    &:nth-child(1) {
+      width: 50%;
+      text-align: left;
+    }
+    &:nth-child(2) {
+      width: 50%;
+      text-align: right;
+    }
+  }
+  display: flex;
+  justify-content: space-between;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS';
+  font-size: 1.5em;
+  color: rgb(255, 255, 255);
+}
+
+.StatRow {
+  font-size: .8em;
+  display: flex;
+  align-items: center;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  text-align: center;
+  background: linear-gradient(to top, rgba(62, 61, 61, 0.2), rgba(127, 125, 125, 0.6));
+  margin: 2px;
+  color: #fff;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode';
+  font-weight: 600;
+  height: 45px;
+  -moz-box-shadow: inset 0 0 1px #b5aeae;
+  -webkit-box-shadow: inset 0 0 1px #e5dada;
+  box-shadow: inset 0 0 1px #beb5b5;
+}
+
+.FontSmall {
+  font-size: .8em;
+}
+
+.HighlightRow {
+  background-color: blueviolet !important;
+}
+
+.StatRow > div {
+  padding: 5px 5px;
+  letter-spacing: 1px;
+  &:nth-child(1), &:nth-child(3) {
+    flex: 2;
+  }
+}
+
+.LabelFont {
+  flex: 1.5;
+  color: rgba(137, 137, 137, 0.3);
+  text-shadow: -0.5px -0.5px 0 rgba(208, 208, 208, 0.627), 1px 1px 0 rgb(76, 76, 76);
+  font: 1em 'Fira Sans', sans-serif;
+  text-align: center;
+}
+
+.HeaderLabelFont {
+  text-align: center;
+  font: 1em 'Fira Sans', sans-serif;
+  text-shadow: -.5px -.5px .5px #fff, .5px .5px .5px #000;
+  color: #ffffff;
+  opacity: .85;
+}
+
+.ValueFont {
+  color: rgba(76, 76, 76, 1);
+  font: .9em 'Trebuchet MS', 'Lucida Sans Unicode';
+  font-weight: 300;
+}
+
+.WinFont {
+  color: rgb(54, 173, 11);
+  text-shadow: 0 0 1px rgb(11, 69, 4);
+}
+
+.LoseFont {
+  color: rgb(190, 3, 3);
+  text-shadow: 0 0 1px rgb(110, 6, 1);
+}
+
+.RedG {
+  background: rgb(255, 255, 255);
+  background: -moz-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(243, 243, 243, 1) 50%, rgba(237, 237, 237, 1) 51%, rgba(255, 255, 255, 1) 100%);
+  background: -webkit-linear-gradient(top, rgba(255, 255, 255, 1) 0%, rgba(243, 243, 243, 1) 50%, rgba(237, 237, 237, 1) 51%, rgba(255, 255, 255, 1) 100%);
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 1) 0%, rgba(243, 243, 243, 1) 50%, rgba(237, 237, 237, 1) 51%, rgba(255, 255, 255, 1) 100%);
+}
+
+.RowOdd {
+  background: rgb(226, 226, 226);
+  background: -moz-linear-gradient(top, rgba(226, 226, 226, 1) 0%, rgba(219, 219, 219, 1) 50%, rgba(209, 209, 209, 1) 51%, rgba(254, 254, 254, 1) 100%);
+  background: -webkit-linear-gradient(top, rgba(226, 226, 226, 1) 0%, rgba(219, 219, 219, 1) 50%, rgba(209, 209, 209, 1) 51%, rgba(254, 254, 254, 1) 100%);
+  background: linear-gradient(to bottom, rgba(226, 226, 226, 0.7) 0%, rgba(219, 219, 219, 0.8) 50%, rgba(209, 209, 209, 0.7) 51%, rgba(254, 254, 254, 0.9) 100%);
+}
+
+.RowEven {
+  background: rgba(246, 248, 249, 0.2);
+  background: -moz-linear-gradient(top, rgba(246, 248, 249, 0.8) 0%, rgba(229, 235, 238, 0.9) 50%, rgba(215, 222, 227, 0.9) 51%, rgba(245, 247, 249, 0.9) 100%);
+  background: -webkit-linear-gradient(top, rgba(246, 248, 249, 0.9) 0%, rgba(229, 235, 238, 0.9) 50%, rgba(215, 222, 227, 0.9) 51%, rgba(245, 247, 249, 0.9) 100%);
+  background: linear-gradient(to bottom, rgba(246, 248, 249, 0.7) 0%, rgba(229, 235, 238, 0.8) 50%, rgba(215, 222, 227, 0.7) 51%, rgba(245, 247, 249, 0.9) 100%);
+}
+
+.HeaderRow {
+  background: rgb(248, 80, 50);
+  background: -moz-linear-gradient(top, rgba(248, 80, 50, 1) 0%, rgba(241, 111, 92, 1) 50%, rgba(246, 41, 12, 1) 51%, rgba(240, 47, 23, 1) 71%, rgba(231, 56, 39, 1) 100%);
+  background: -webkit-linear-gradient(top, rgba(248, 80, 50, 1) 0%, rgba(241, 111, 92, 1) 50%, rgba(246, 41, 12, 1) 51%, rgba(240, 47, 23, 1) 71%, rgba(231, 56, 39, 1) 100%);
+  background: linear-gradient(to bottom, rgba(248, 80, 50, 1) 0%, rgba(241, 111, 92, 1) 50%, rgba(246, 41, 12, 1) 51%, rgba(240, 47, 23, 1) 71%, rgba(231, 56, 39, 1) 100%);
+}
+
+.RightHeaderRow {
+  background: rgb(248, 80, 50);
+  background: -moz-linear-gradient(top, rgba(248, 80, 50, 1) 0%, rgba(241, 111, 92, 1) 50%, rgba(246, 41, 12, 1) 51%, rgba(240, 47, 23, 1) 71%, rgba(231, 56, 39, 1) 100%);
+  background: -webkit-linear-gradient(top, rgba(248, 80, 50, 1) 0%, rgba(241, 111, 92, 1) 50%, rgba(246, 41, 12, 1) 51%, rgba(240, 47, 23, 1) 71%, rgba(231, 56, 39, 1) 100%);
+  background: linear-gradient(to bottom, rgba(248, 80, 50, 1) 0%, rgba(241, 111, 92, 1) 50%, rgba(246, 41, 12, 1) 51%, rgba(240, 47, 23, 1) 71%, rgba(231, 56, 39, 1) 100%);
+  white-space: nowrap;
+}
+
+.LeftHeaderRow {
+  background: rgb(109, 179, 242);
+  background: -moz-linear-gradient(top, rgba(109, 179, 242, 1) 0%, rgba(84, 163, 238, 1) 50%, rgba(54, 144, 240, 1) 51%, rgba(30, 105, 222, 1) 100%);
+  background: -webkit-linear-gradient(top, rgba(109, 179, 242, 1) 0%, rgba(84, 163, 238, 1) 50%, rgba(54, 144, 240, 1) 51%, rgba(30, 105, 222, 1) 100%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(109, 179, 242, 1) 0%, rgba(84, 163, 238, 1) 50%, rgba(54, 144, 240, 1) 51%, rgba(30, 105, 222, 1) 100%);
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#6db3f2', endColorstr='#1e69de',GradientType=0 );
+  /* IE6-9 */
+  white-space: nowrap;
+}
+
+.LeftHeaderRowFightHistory, .RightHeaderRowFightHistory {
+  background-image: linear-gradient(45deg, #e8e8e8, #717171 45%);
+}
+
+.HeaderRow > td {
+  padding: 10px !important;
+}
+
+.HeaderRowSub {
+  color: white;
+  font-size: .8em;
+}
+
+.HideInfo {
+  font-size: 0;
+  margin: 0;
+  padding: 0;
+  line-height: 0 !important;
+  visibility: hidden;
+  transition: all 100 ease-out;
+  opacity: 0;
+  height: 0;
+  overflow: hidden;
+  > td {
+    display: none;
+    font-size: 0;
+    line-height: 0;
+  }
+}
+
+.ShowInfo {
+  opacity: 1;
+  visibility: visible;
+  height: auto;
+  > td {
+    display: 'block';
+  }
+}
+
+.HeaderRowSub > td {
+  padding: 5px;
+  color: rgb(0, 0, 0);
+  font-size: 1em;
+  text-shadow: -.5px -.5px .5px #fff;
+  &:nth-child(1) {
+    background: white;
+    border: 0px;
+  }
+}
+
+.FightHistoryRow {
+  transition: 100ms ease all;
+  -moz-box-shadow: inset 0 0 3px #b5aeae;
+  -webkit-box-shadow: inset 0 0 3px #e5dada;
+  box-shadow: inset 0 0 3px #beb5b5;
+  > {
+    td {
+      border: 1px dotted rgb(217, 217, 217);
+      padding: 5px;
+    }
+    div {
+      padding: 5px 3px;
+      letter-spacing: 1px;
+      &:nth-child(1), &:nth-child(3) {
+        flex: 2;
+      }
+    }
+  }
+}
+
+.AudioControl {
+  display: inline;
+  position: absolute;
+  text-align: right;
+  right: 0;
+  margin: 10px 5px;
+  z-index: 101;
+}
+
+.btnClearRight {
+  text-align: left;
+}
+
+.btnClearLeft {
+  text-align: right;
+}
+
+.FlipImage {
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+}
+
+input[type=search]::-webkit-search-cancel-button {
+  -webkit-appearance: searchfield-cancel-button;
+}
+
+.TextAlignRight {
+  text-align: right;
+}
+
+.TextAlignLeft {
+  text-align: left;
+}
+
+.Controls {
+  color: rgb(150, 147, 147);
+  font-size: 1.5em;
+  &:hover {
+    color: rgb(255, 255, 255);
+    font-size: 1.5em !important;
+  }
+}
+
+@keyframes AnimLogo {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+
+@keyframes neon2 {
+  0% {
+    text-shadow: 0 0 1px #fff, 0 0 2px #fff, 0 0 2px #fff, 0 0 3px #228DFF, 0 0 4px #228DFF;
+  }
+
+  100% {
+    text-shadow: 0 0 2px #fff, 0 0 3px #fff, 0 0 6px #fff, 0 0 8px #228DFF, 0 0 12px #228DFF, 0 0 15px #228DFF, 0 0 16px #228DFF, 0 0 20px #228DFF;
+  }
+}
+
+
+@-webkit-keyframes neon1 {
+  from {
+    text-shadow: 0 0 1px rgb(221, 157, 157), 0 0 2px rgb(226, 131, 131), 0 0 3px rgb(243, 163, 163), 0 0 4px #FF1177, 0 0 5px #FF1177, 0 0 6px #FF1177, 0 0 10px #FF1177, 0 0 15px #FF1177;
+  }
+
+  to {
+    text-shadow: 0 0 2px #fff, 0 0 4px #fff, 0 0 8px #fff, 0 0 10px #FF1177, 0 0 15px #FF1177, 0 0 20px #FF1177, 0 0 25px #FF1177, 0 0 35px #FF1177;
+  }
+}
+
+
+.LogoName {
+  transition: 1.5s ease all;
+  opacity: 1;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  font-family: tDays;
+  font-size: 2.2em;
+  font-weight: 100;
+  color: rgba(255, 255, 255, 1);
+  z-index: -1;
+  text-align: center;
+}
+
+.LogoFont {
+  align-self: center;
+  opacity: 0;
+  transition: 3.5s opacity;
+}
+
+.Opacity1 {
+  opacity: 1 !important;
+}
+
+@media all and (min-width: 768px) {
+  .StatMiddleBottom > table {
+    &:nth-child(1), &:nth-child(2) {
+      width: 50%;
+    }
+  }
+}
+
+/* Small Devices, Tablets */
+@media all and (max-width: 768px) {
+  .StatMiddleBottom > table {
+    &:nth-child(1), &:nth-child(2) {
+      width: 100%;
+    }
+  }
+  .profileImg {
+    transform: scale(0.9);
+  }
+  .fighterProfileTop {
+    width: 325px;
+    padding: 0;
+  }
+  .FighterName {
+    font-size: 1.4em;
+  }
+  .LogoName {
+    font-size: 2em;
+  }
+}
+
+@media all and (max-width: 480px) {
+  .LogoName {
+    font-size: 1.2em;
+  }
+}
